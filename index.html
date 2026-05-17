@@ -13,7 +13,7 @@
     }
     
     body {
-      background: #0a0a0c;
+      background: #111;
       color: #fff;
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -32,7 +32,6 @@
       max-width: 800px; 
       display: flex;
       flex-direction: column;
-      gap: clamp(2rem, 5vw, 3.5rem);
     }
 
     /* Top Section */
@@ -104,8 +103,8 @@
     }
 
     .label.unofficial {
-      background: rgba(27, 71, 216, 0.1);
-      color: #3b82f6;
+      background: rgba(244, 63, 94, 0.1);
+      color: #f43f5e;
     }
 
     h1 {
@@ -154,9 +153,7 @@
 
     /* Bottom Section */
     .bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 1.5rem;
-      display: flex;
+          display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
@@ -176,7 +173,7 @@
     
     .icons a {
       color: rgba(255, 255, 255, 0.4);
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       text-decoration: none;
       transition: color 0.2s ease, transform 0.2s ease;
     }
@@ -203,63 +200,30 @@
 
 <div class="card">
   <!-- Top Section -->
-  <div class="top">
-    <span class="logo">
-      <span class="logo-red">Ozu</span><span class="logo-blue">Planner</span>
-    </span>
-    
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
-      <button class="lang-btn" onclick="setLanguage('tr')">TR</button>
-    </div>
-  </div>
+
 
   <!-- Mid Section -->
   <div class="mid">
     <div class="badge-container">
-      <span class="label closed" lang="en">Project Closed</span>
-      <span class="label closed" lang="tr">Proje Kapatıldı</span>
+      <span class="label closed" lang="en">Status: Closed</span>
       
       <span class="label unofficial" lang="en">Unofficial Student Project</span>
-      <span class="label unofficial" lang="tr">Bağımsız Öğrenci Projesi</span>
     </div>
     
-    <h1 lang="en">No longer active.</h1>
-    <h1 lang="tr">Artık aktif değil.</h1>
+    <h1 lang="en">OzuPlanner is no longer active.</h1>
 
-    <div class="note">
-      <i class="fa-solid fa-circle-info"></i>
-      <span lang="en">This was an independent student project and not an official university service. For official course scheduling, please visit <a href="https://sis.ozyegin.edu.tr" target="_blank">sis.ozyegin.edu.tr</a>.</span>
-      <span lang="tr">Bu çalışma bağımsız bir öğrenci projesi olup, resmi bir üniversite hizmeti değildir. Resmi ders programı işlemleri için lütfen <a href="https://sis.ozyegin.edu.tr" target="_blank">sis.ozyegin.edu.tr</a> adresini ziyaret edin.</span>
-    </div>
-  </div>
+
 
   <!-- Bottom Section -->
   <div class="bottom">
-    <div class="author">
-      <span class="author-name">Faruk Avcı</span>
-    </div>
-    <div class="icons">
+      <div class="icons"> 
       <a href="mailto:faruk.avci@ozu.edu.tr" title="Email"><i class="fa-regular fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/omer-faruk-avci" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a href="https://github.com/faruk-avci" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/omer-faruk-avci" target="_blank" style="color: #3b82f6;" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/faruk-avci" target="_blank" title="GitHub" style="color: #ffffff;"><i class="fa-brands fa-github"></i></a>
     </div>
   </div>
 </div>
-
-<script>
-  function setLanguage(lang) {
-    // Set the language class on the body
-    document.body.className = 'lang-' + lang;
-    
-    // Update active status on switcher buttons
-    const buttons = document.querySelectorAll('.lang-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    
-    // Find the button that matches the clicked language context
-    event.target.classList.add('active');
-  }
-</script>
+  </div>
 
 </body>
 </html>
