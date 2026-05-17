@@ -1,127 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OzuPlanner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      background: #0a0a0c;
+      color: #fff;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
 
+    /* Language Toggle Visibility Rules */
+    body.lang-en [lang="tr"] { display: none !important; }
+    body.lang-tr [lang="en"] { display: none !important; }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  background: #111;
-  min-height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-.wrap {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 6vw, 5rem);
-}
-.card { width: 100%; max-width: 1100px; }
-.top {
-  margin-bottom: clamp(2.5rem, 5vw, 5rem);
-}
-.logo { font-size: clamp(0.85rem, 1.5vw, 1.1rem); font-weight: 600; }
-.logo-blue { color: #003D7C; }
-.logo-red { color: #a30050; }
-.mid { margin-bottom: clamp(2.5rem, 5vw, 5rem); }
-.label {
-  font-size: clamp(10px, 1.2vw, 12px);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #a30050;
-  margin-bottom: 1rem;
-}
-h1 {
-  font-size: clamp(2.8rem, 8vw, 7rem);
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin-bottom: 1.8rem;
-}
-.note {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: clamp(0.72rem, 1.1vw, 0.8rem);
-  color: rgba(255,255,255,0.3);
-  line-height: 1.5;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 6px;
-  padding: 8px 13px;
-}
-.note a { color: #003D7C; text-decoration: none; }
-.note a:hover { color: #a30050; }
-.note i { font-size: 10px; color: rgba(255,255,255,0.2); flex-shrink: 0; }
-.bottom {
-  padding-top: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.author {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.author-name {
-  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
-  font-weight: 600;
-  color: #fff;
-}
-.divider-dot {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-}
-.icons { display: flex; gap: 1rem; align-items: center; }
-.icons a {
-  color: #003D7C;
-  font-size: clamp(0.85rem, 1.3vw, 1rem);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-.icons a:hover { color: #a30050; }
-.copy {
-  font-size: clamp(0.68rem, 1vw, 0.75rem);
-  color: rgba(255,255,255,0.12);
-}
+    .card { 
+      width: 100%; 
+      max-width: 800px; 
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 5vw, 3.5rem);
+    }
 
-@media (max-width: 500px) {
-  .bottom { flex-direction: column; align-items: flex-start; }
-  .copy { display: none; }
-}
-</style>
+    /* Top Section */
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-<div class="wrap">
-  <div class="card">
-    <div class="top">
-      <span class="logo">
-        <span class="logo-blue">Ozu</span><span class="logo-red">Planner</span>
-      </span>
+    .logo { 
+      font-size: clamp(1.1rem, 2vw, 1.3rem); 
+      font-weight: 700; 
+      letter-spacing: -0.02em;
+    }
+    .logo-blue { color: #3b82f6; }
+    .logo-red { color: #f43f5e; }
+
+    /* Language Switcher Buttons */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .lang-btn.active {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    /* Mid Section */
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .label {
+      font-size: clamp(10px, 1vw, 11px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .label.closed {
+      background: rgba(244, 63, 94, 0.1);
+      color: #f43f5e;
+    }
+
+    .label.unofficial {
+      background: rgba(27, 71, 216, 0.1);
+      color: #3b82f6;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1.8rem;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .note {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+      line-height: 1.6;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.01);
+      border-radius: 12px;
+      padding: 16px 20px;
+      max-width: 600px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .note a { 
+      color: #3b82f6; 
+      text-decoration: none; 
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .note a:hover { 
+      color: #60a5fa; 
+      border-bottom-color: #60a5fa;
+    }
+    
+    .note i { 
+      margin-top: 4px;
+      color: #3b82f6; 
+      font-size: 1.1rem;
+    }
+
+    /* Bottom Section */
+    .bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .author-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .icons { 
+      display: flex; 
+      gap: 1.2rem; 
+      align-items: center; 
+    }
+    
+    .icons a {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .icons a:hover { 
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 500px) {
+      .bottom { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 1.5rem;
+      }
+      body {
+        align-items: flex-start;
+        padding-top: 4rem;
+      }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+<div class="card">
+  <!-- Top Section -->
+  <div class="top">
+    <span class="logo">
+      <span class="logo-red">Ozu</span><span class="logo-blue">Planner</span>
+    </span>
+    
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('tr')">TR</button>
     </div>
+  </div>
 
-    <div class="mid">
-      <p class="label">Project closed</p>
-      <h1>No longer<br>active.</h1>
-      <span class="note">
-        <i class="fa-solid fa-circle-info"></i>
-        Not an official service. For official scheduling visit <a href="https://sis.ozyegin.edu.tr" target="_blank">sis.ozyegin.edu.tr</a>
-      </span>
+  <!-- Mid Section -->
+  <div class="mid">
+    <div class="badge-container">
+      <span class="label closed" lang="en">Project Closed</span>
+      <span class="label closed" lang="tr">Proje Kapatıldı</span>
+      
+      <span class="label unofficial" lang="en">Unofficial Student Project</span>
+      <span class="label unofficial" lang="tr">Bağımsız Öğrenci Projesi</span>
     </div>
+    
+    <h1 lang="en">No longer active.</h1>
+    <h1 lang="tr">Artık aktif değil.</h1>
 
-    <div class="bottom">
-      <div class="author">
-        <span class="author-name">Faruk Avcı</span>
-        <div class="divider-dot"></div>
-        <div class="icons">
-          <a href="mailto:faruk.avci@ozu.edu.tr" title="Email"><i class="fa-regular fa-envelope"></i></a>
-          <a href="https://linkedin.com/in/omer-faruk-avci" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://github.com/faruk-avci" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
+    <div class="note">
+      <i class="fa-solid fa-circle-info"></i>
+      <span lang="en">This was an independent student project and not an official university service. For official course scheduling, please visit <a href="https://sis.ozyegin.edu.tr" target="_blank">sis.ozyegin.edu.tr</a>.</span>
+      <span lang="tr">Bu çalışma bağımsız bir öğrenci projesi olup, resmi bir üniversite hizmeti değildir. Resmi ders programı işlemleri için lütfen <a href="https://sis.ozyegin.edu.tr" target="_blank">sis.ozyegin.edu.tr</a> adresini ziyaret edin.</span>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="bottom">
+    <div class="author">
+      <span class="author-name">Faruk Avcı</span>
+    </div>
+    <div class="icons">
+      <a href="mailto:faruk.avci@ozu.edu.tr" title="Email"><i class="fa-regular fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/omer-faruk-avci" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/faruk-avci" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
     </div>
   </div>
 </div>
+
+<script>
+  function setLanguage(lang) {
+    // Set the language class on the body
+    document.body.className = 'lang-' + lang;
+    
+    // Update active status on switcher buttons
+    const buttons = document.querySelectorAll('.lang-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Find the button that matches the clicked language context
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
